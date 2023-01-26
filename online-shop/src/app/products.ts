@@ -1,12 +1,13 @@
 export interface Product {
     id: number;
     title: string;
+    type: string;
     description: string;
     filename: string;
-    height: string;
-    width: string;
-    price: string;
-    rating: string;
+    height: number;
+    width: number;
+    price: number;
+    rating: number;
 }
 
 export const products = [
