@@ -1,0 +1,38 @@
+<h3>Shopping Cart</h3>
+
+<div class="cart-item" *ngFor="let item of items">
+  <span>{{ item.title }}</span>
+  <span>{{ item.price | currency }}</span>
+</div>
+<br/><br/>
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Name</label>
+    <input id="name" type="text" formControlName="name" />
+    <div *ngIf="checkoutForm.controls['name'].invalid && checkoutForm.controls['name'].touched" class="alert alert-danger">
+        <div *ngIf="checkoutForm.controls['name'].errors?.['required']"> <!--new syntax-->
+          Name field is required. Please provide your name.
+        </div>
+      </div>
+  </div>
+  <div>
+    <label for="email">Email</label>
+    <input id="email" type="email" formControlName="email" />
+    <div *ngIf="checkoutForm.controls['email'].invalid && checkoutForm.controls['email'].touched" class="alert alert-danger">
+        <div *ngIf="checkoutForm.controls['email'].errors?.['required']"> <!--new syntax-->
+          Email field is required. Please provide an existing email address.
+        </div>
+      </div>
+  </div>
+  <div>
+    <label for="address">Shipping Address</label>
+    <input id="address" type="text" formControlName="address" />
+    <div *ngIf="checkoutForm.controls['address'].invalid && checkoutForm.controls['address'].touched" class="alert alert-danger">
+        <div *ngIf="checkoutForm.controls['address'].errors?.['required']"> <!--new syntax-->
+          Please provide a shipping address.
+        </div>
+      </div>
+  </div>
+
+  <button class="button" type="submit">Purchase</button>
+</form>

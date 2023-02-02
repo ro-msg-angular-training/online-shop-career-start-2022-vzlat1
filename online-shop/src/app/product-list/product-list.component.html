@@ -13,4 +13,19 @@
   <p *ngIf="product.description">{{ product.description }}</p>
 
   <img class="product-interface" src="assets/images/{{product.filename}}" alt="{{product.title}}"/>
+  <button class="button-details" [routerLink]="['/', 'products', product.id]" type="button">Details</button>
 </div>
+
+<!-- <div class="products-catalogue"  *ngFor="let product of products | async ">
+  <div class="product-item">
+      <a [title]="product.title + ' details'">
+          {{ product.title }}
+      </a>
+      <p class="product-category" *ngIf="product.description">
+          Category: {{product.description}}
+      </p>
+      <button class="button-details" [routerLink]="['/', 'product', product.id]" type="button">Details</button>
+  </div>
+</div> -->
+
+

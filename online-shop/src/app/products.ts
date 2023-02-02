@@ -10,6 +10,14 @@ export interface Product {
     rating: number;
 }
 
+export interface ProductViewModel {
+    id: number;
+    title: string;
+    type: string;
+    description: string;
+    filename: string;
+}
+
 export const products = [
     {
         id: 1,

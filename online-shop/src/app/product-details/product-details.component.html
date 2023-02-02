@@ -6,5 +6,8 @@
   <p>{{ product.description }}</p>
   <img class="product-interface" src="assets/images/{{product.filename}}" alt="{{product.title}}"/>
   <br/>
-  <button type="button">Buy</button>
+  <div class="container">
+  <button id="button-buy" type="button" (click)="addToCart(product)">Buy</button>
+  <button id="button-back" class="button-details" [routerLink]="['/products']" type="button">Back to all products</button>
+</div>
 </div>

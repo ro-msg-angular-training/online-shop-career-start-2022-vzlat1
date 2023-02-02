@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { products } from '../products';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpClientModule } from "@angular/common/http";
+
+import { Product, products, ProductViewModel } from '../products';
 
 @Component({
   selector: 'app-product-list',
@@ -15,4 +18,5 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
     
   }
+  
 }
