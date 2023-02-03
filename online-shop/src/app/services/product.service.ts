@@ -4,6 +4,7 @@ import { catchError, Observable, retry, throwError } from 'rxjs';
 import { ProductOrder } from '../order';
 import { Product } from '../products';
 import { baseURL } from '../utilities';
+import { Location } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import { baseURL } from '../utilities';
 export class ProductService {
   ordersOfProducts: ProductOrder[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private location: Location) { }
 
   public getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(`${baseURL}/products`).pipe(catchError(this.httpErrorHandler));
@@ -19,6 +20,10 @@ export class ProductService {
 
   public getProductById(id: number): Observable<Product> {
     return this.http.get<Product>(`${baseURL}/products/${id}`).pipe(catchError(this.httpErrorHandler));
+  }
+
+  public updateProduct(id: number, data: any) {
+    return this.http.put<Product>(`${baseURL}/products/${id}`, data).pipe(catchError(this.httpErrorHandler));
   }
 
   public deleteProductById(id: number) {
@@ -34,6 +39,10 @@ export class ProductService {
     }
   }
 
+  public addProduct(data: any) {
+    return this.http.post<Product>(`${baseURL}/products`, data).pipe(catchError(this.httpErrorHandler));
+  }
+
   checkout(): any {
     const data = { customer: 'doej', products: this.ordersOfProducts };
     return this.http.post(`${baseURL}/orders`, data, { responseType: 'text' });
@@ -41,6 +50,10 @@ export class ProductService {
 
   getCartOrders(): ProductOrder[] {
     return this.ordersOfProducts;
+  }
+
+  backToProductList(): void {
+    this.location.back();
   }
 
   private httpErrorHandler (error: HttpErrorResponse) {

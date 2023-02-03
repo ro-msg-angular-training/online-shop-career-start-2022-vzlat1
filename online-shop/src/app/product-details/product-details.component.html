@@ -13,9 +13,10 @@
   <div class="container">
   <!-- <button id="button-buy" type="button" (click)="addToCart(product)">Buy</button> -->
   <div class="add-to-cart-button">
-    <button mat-raised-button color="primary" class="add-product" (click)="addToCartHandler(product.id)">ADD</button>  
+    <button mat-raised-button color="primary" class="button-inline" (click)="addToCartHandler(product.id)">Add to cart</button>  
   </div>
-  <button id="button-back" class="button-details" [routerLink]="['/products']" type="button">Back to all products</button>
-  <button class="button-details" (click)="deleteCurrentProduct(product.id)">Delete</button>
+  <button class="button-inline" [routerLink]="['/products']" type="button">Back to all products</button>
+  <button class="button-inline" (click)="deleteCurrentProduct(product.id)">Delete</button>
+  <button class="button-inline" [routerLink]="['/edit-product', product.id]">EDIT</button>
 </div>
 </div>

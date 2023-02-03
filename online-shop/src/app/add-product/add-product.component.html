@@ -1,0 +1,25 @@
+<h3>Add New Product</h3>
+<form [formGroup]="productForm" (ngSubmit)="addProductToList()">
+    <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control" placeholder="Enter product name" formControlName="name" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Category</label>
+        <input type="text" class="form-control" placeholder="Enter product category" formControlName="category" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Price</label>
+        <input type="text" class="form-control" placeholder="Enter price" formControlName="price" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Description</label>
+        <input type="text" class="form-control" placeholder="Enter description" formControlName="description" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Image</label>
+        <input type="text" class="form-control" placeholder="Enter image Url" formControlName="image" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

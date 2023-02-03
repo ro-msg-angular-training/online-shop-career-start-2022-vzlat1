@@ -1,5 +1,11 @@
 <h2>Products</h2>
-
+<button
+  class="button-details"
+  [routerLink]="['/', 'add-product']"
+  type="button"
+>
+  Create New Product
+</button>
 <div class="product-catalogue" *ngFor="let product of products">
   <div class="product-item" (click)="refreshID(product.id)">
     <h3>

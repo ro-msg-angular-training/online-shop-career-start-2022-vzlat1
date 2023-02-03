@@ -48,6 +48,7 @@ export class ShoppingCartComponent {
       // alert('Checkout succesfully done');
       this.goBack();
     });
+    this.checkoutForm.reset();
   }
 
   goBack(): void {

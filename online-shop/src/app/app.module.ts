@@ -9,6 +9,8 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EditProductComponent } from './edit-product/edit-product.component';
+import { AddProductComponent } from './add-product/add-product.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     ProductDetailsComponent,
     ProductListComponent,
     TopBarComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    EditProductComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,
