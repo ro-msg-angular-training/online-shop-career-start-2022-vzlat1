@@ -1,13 +1,21 @@
-<h2>Product Details</h2>
+<!-- <h2>Product Details</h2> -->
 
 <div *ngIf="product">
-  <h3>{{ product.title }}</h3>
-  <h4>{{ product.price | currency }}</h4>
-  <p>{{ product.description }}</p>
-  <img class="product-interface" src="assets/images/{{product.filename}}" alt="{{product.title}}"/>
+  <h2>Product: {{ product.name }}</h2>
+  <div>
+    <p>Description: {{ product.description }}</p>
+    <p><i>Category: {{ product.category }}</i></p>
+    <h4>Price: {{ product.price | currency }}</h4>
+    <img class="product-interface" src="{{product.image}}" alt="{{product.name}}"/>
+  </div>
+
   <br/>
   <div class="container">
-  <button id="button-buy" type="button" (click)="addToCart(product)">Buy</button>
+  <!-- <button id="button-buy" type="button" (click)="addToCart(product)">Buy</button> -->
+  <div class="add-to-cart-button">
+    <button mat-raised-button color="primary" class="add-product" (click)="addToCartHandler(product.id)">ADD</button>  
+  </div>
   <button id="button-back" class="button-details" [routerLink]="['/products']" type="button">Back to all products</button>
+  <button class="button-details" (click)="deleteCurrentProduct(product.id)">Delete</button>
 </div>
 </div>

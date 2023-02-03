@@ -1,19 +1,30 @@
 <h2>Products</h2>
 
 <div class="product-catalogue" *ngFor="let product of products">
-  <h3>
-    <a
-      [title]="product.title + ' details'"
-      [routerLink]="['/products', product.id]"
+  <div class="product-item" (click)="refreshID(product.id)">
+    <h3>
+      <a
+        [title]="product.name + ' details'"
+        [routerLink]="['/products', product.id]"
+      >
+        {{ product.name }}
+      </a>
+    </h3>
+
+    <p *ngIf="product.description">{{ product.description }}</p>
+    <p class="product-category" *ngIf="product.category">
+      Category: {{ product.category }}
+    </p>
+
+    <!-- <img class="product-interface" src="assets/images/{{product.filename}}" alt="{{product.name}}"/> -->
+    <button
+      class="button-details"
+      [routerLink]="['/', 'products', product.id]"
+      type="button"
     >
-      {{ product.title }}
-    </a>
-  </h3>
-
-  <p *ngIf="product.description">{{ product.description }}</p>
-
-  <img class="product-interface" src="assets/images/{{product.filename}}" alt="{{product.title}}"/>
-  <button class="button-details" [routerLink]="['/', 'products', product.id]" type="button">Details</button>
+      Details
+    </button>
+  </div>
 </div>
 
 <!-- <div class="products-catalogue"  *ngFor="let product of products | async ">
@@ -27,5 +38,3 @@
       <button class="button-details" [routerLink]="['/', 'product', product.id]" type="button">Details</button>
   </div>
 </div> -->
-
-

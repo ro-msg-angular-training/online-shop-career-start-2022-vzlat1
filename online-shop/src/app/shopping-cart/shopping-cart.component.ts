@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { CartService } from '../cart.service';
+import { ProductOrder } from '../order';
+import { Product } from '../products';
+import { ProductService } from '../services/product.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -8,7 +11,11 @@ import { CartService } from '../cart.service';
   styleUrls: ['./shopping-cart.component.scss']
 })
 export class ShoppingCartComponent {
-  items = this.cartService.getItems();
+  //items = this.cartService.getItems();
+  orderedItems: any = []
+
+  constructor(private productService: ProductService, private location: Location,
+    private formBuilder: FormBuilder) {}
 
   checkoutForm = this.formBuilder.group({
     name: ['', Validators.required ],
@@ -17,12 +24,34 @@ export class ShoppingCartComponent {
     address: ['', Validators.required ]
   });
 
-  constructor(private cartService: CartService, private formBuilder: FormBuilder) {}
-
   onSubmit(): void {
-    this.items = this.cartService.clearCart();
+    //this.items = this.cartService.clearCart();
     window.alert('Your order has been accepted.');
     this.checkoutForm.reset();
+  }
+
+  ngOnInit(): void {
+    this.getOrders();
+  }
+
+  getOrders(): void {
+    this.productService.getCartOrders().forEach((productOrder) => {
+      this.productService.getProductById(productOrder.productId).subscribe((item) => {
+        let product = <Product>item;
+        this.orderedItems.push({ product: product, quantity: productOrder.quantity });
+      });
+    });
+  }
+
+  checkoutEventHandler() {
+    this.productService.checkout().subscribe(() => {
+      // alert('Checkout succesfully done');
+      this.goBack();
+    });
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
 }
